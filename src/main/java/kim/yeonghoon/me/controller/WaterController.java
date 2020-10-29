@@ -29,16 +29,16 @@ public class WaterController {
 	/**
 	 * 메인 페이지(get으로 접근) 
 	 */
-	@GetMapping("/water")
+	@GetMapping("water")
 	public String main() {
-		return "/water/main";
+		return "water/main";
 	}
 	
 	
 	/**
 	 * 메인 페이지 접근 시 리스트 불러오기. 페이징은 나중에 필요하다면 만들 생각.
 	 */
-	@PostMapping(value = "/water/waterSelectList", produces = "text/json;charset=UTF-8")
+	@PostMapping(value = "water/waterSelectList", produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String main(ModelAndView mav) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
@@ -58,7 +58,7 @@ public class WaterController {
 	/**
 	 * 필터 사용 횟수 카운트(post로 던짐)
 	 */
-	@PostMapping(value = "/water", produces = "text/json;charset=UTF-8")
+	@PostMapping(value = "water", produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String useFilter(@RequestParam HashMap<String,String> params) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
@@ -82,19 +82,19 @@ public class WaterController {
 	/**
 	 * 필터 상세 정보 페이지(기본) 
 	 */
-	@GetMapping("/water/detail")
+	@GetMapping("water/detail")
 	public String detail() {
-		return "/water/detail";
+		return "water/detail";
 	}
 	
 	
 	/**
 	 * 필터 상세 정보 페이지(Pathvariable)
 	 */
-	@GetMapping("/water/{id}")
+	@GetMapping("water/{id}")
 	public ModelAndView detail(@PathVariable String id, ModelAndView mav) {
 		mav.addObject(id);
-		mav.setViewName("/water/detail");
+		mav.setViewName("water/detail");
 		return mav;
 	}
 	
@@ -102,7 +102,7 @@ public class WaterController {
 	/**
 	 * 선택한 필터의 상세 정보 불러오는 기능(post)
 	 */
-	@PostMapping(value = "/water/selectFilter", produces = "text/json;charset=UTF-8")
+	@PostMapping(value = "water/selectFilter", produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String selectFilter(@RequestParam HashMap<String,String> params) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
@@ -125,7 +125,7 @@ public class WaterController {
 	/**
 	 * 필터 교체 기능
 	 */
-	@PostMapping(value = "/water/filterReplace", produces = "text/json;charset=UTF-8")
+	@PostMapping(value = "water/filterReplace", produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String filterReplace(@RequestParam HashMap<String,String> params) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();

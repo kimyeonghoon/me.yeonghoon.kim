@@ -24,4 +24,29 @@ public class WaterService implements IWaterService {
 		return iWaterDao.countUp(params);
 	}
 
+	@Override
+	public void countTime(HashMap<String, String> params) throws Throwable {
+		iWaterDao.countTime(params);		
+	}
+
+	@Override
+	public HashMap<String, String> selectFilter(HashMap<String, String> params) throws Throwable {
+		return iWaterDao.selectFilter(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> timeFilter(HashMap<String, String> params) throws Throwable {
+		return iWaterDao.timeFilter(params);
+	}
+
+	@Override
+	public int filterEnd(HashMap<String, String> params) throws Throwable {
+		return iWaterDao.filterEnd(params);
+	}
+
+	@Override
+	public int filterReplace(HashMap<String, String> params) throws Throwable {
+		return iWaterDao.filterReplace(params);
+	}
+
 }

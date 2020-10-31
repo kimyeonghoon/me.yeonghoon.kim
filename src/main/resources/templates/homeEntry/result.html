@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>me.yeonghoon.kim :: 집 출입 체크 결과</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js" ></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		if($("#check").val() == "in") {
+			alert("입실처리 완료");
+		} else if($("#check").val() == "out") {
+			alert("퇴실처리 완료");
+		} else {
+			alert("에러 발생");
+		}
+		location.href = "./";
+	});
+</script>
+</head>
+<body>
+<input th:value="${result}" type="hidden" id="check" />
+</body>
+</html>

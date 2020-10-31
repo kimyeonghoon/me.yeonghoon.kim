@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HomeEntry">
+	<!-- 마지막 출입 번호 체크 -->
+	<select id="prevNo" resultType="Integer">
+		SELECT AUTO_INCREMENT - 1
+		FROM information_schema.tables
+		WHERE table_name = 'home_entry'
+		AND table_schema = DATABASE()
+	</select>
+	<!-- 현재 입실상태인지 퇴실상태인지 체크 -->
+	<select id="entryStatus" parameterType="Integer" resultType="Integer">
+		SELECT NVL2(out_time, 0, 1) AS entryStatus
+		FROM home_entry
+		WHERE id = #{prevNo}
+	</select>
+	<!-- 입실 -->
+	<insert id="insertEntry">
+		INSERT INTO home_entry (in_time)
+		VALUES (NOW())
+	</insert>
+	<!-- 퇴실 -->
+	<update id="updateEntry" parameterType="Integer">
+		UPDATE home_entry
+		SET out_time = NOW()
+		WHERE id = #{prevNo}
+	</update>
+</mapper>

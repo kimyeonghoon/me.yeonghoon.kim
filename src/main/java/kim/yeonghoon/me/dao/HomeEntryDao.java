@@ -1,5 +1,8 @@
 package kim.yeonghoon.me.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,6 +31,16 @@ public class HomeEntryDao implements IHomeEntryDao {
 	@Override
 	public void updateEntry(int prevNo) throws Throwable {
 		sqlSession.insert("HomeEntry.updateEntry", prevNo);
+	}
+
+	@Override
+	public int getNoCnt(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("HomeEntry.getNoCnt", params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getNoList(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectList("HomeEntry.getNoList", params);
 	}
 	
 

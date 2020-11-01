@@ -4,4 +4,7 @@
 	<typeAliases>
 		<typeAlias alias="hashmap" type="java.util.HashMap" />
 	</typeAliases>
+    <mappers>
+       	 <mapper resource="mybatis/mapper/*.xml"/>
+  	</mappers>
 </configuration>

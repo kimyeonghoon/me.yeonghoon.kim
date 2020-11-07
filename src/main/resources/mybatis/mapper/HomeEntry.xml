@@ -32,7 +32,7 @@
 	</select>
 	<!-- 출입 번호 리스트 추출 -->
 	<select id="getNoList" parameterType="hashmap" resultType="hashmap">
-		SELECT id, DATE_FORMAT(in_time, '%Y-%m-%d %H:%i:%s') AS in_time, DATE_FORMAT(out_time, '%Y-%m-%d %H:%i:%s') AS out_time
+		SELECT id, DATE_FORMAT(in_time, '%Y-%m-%d %H:%i:%s') AS in_time, NVL2(out_time, DATE_FORMAT(out_time, '%Y-%m-%d %H:%i:%s'), '-') AS out_time
 		FROM home_entry
 		ORDER BY id DESC
 		LIMIT ${limitStart}, ${limitCount}

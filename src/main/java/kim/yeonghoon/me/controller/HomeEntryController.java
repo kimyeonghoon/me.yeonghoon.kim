@@ -14,7 +14,7 @@ import kim.yeonghoon.me.common.service.IPagingService;
 import kim.yeonghoon.me.service.IHomeEntryService;
 
 @Controller
-public class HomeEntry {
+public class HomeEntryController {
 	
 	@Autowired
 	IHomeEntryService iHomeEntryService;

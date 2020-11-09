@@ -18,7 +18,6 @@
 						<th>출입번호</th>
 						<th>입실시간</th>
 						<th>퇴실시간</th>
-						<th>외출시간</th>
 					</tr>
 				</thead>
 				<tbody id="entryList">
@@ -26,7 +25,6 @@
 						<td th:text="${list.id}"></td>
 						<td th:text="${list.in_time}"></td>
 						<td th:text="${list.out_time}"></td>
-						<td>-</td>
 					</tr>
 				</tbody>
 			</table>
@@ -35,11 +33,12 @@
 				<li th:unless="${pagingMap.currentPage} == '1'" class="page-item"><a class="page-link" href="homeEntry?page=1">시작</a></li>
 				<li th:if="${pagingMap.currentPage} == '1'" th:classappend="disabled" class="page-item"><a class="page-link" href="#">이전</a></li>
 				<li th:unless="${pagingMap.currentPage} == '1'" class="page-item"><a class="page-link" th:href="@{homeEntry(page=${pagingMap.currentPage} - 1)}">이전</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item active"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">4</a></li>
-				<li class="page-item"><a class="page-link" href="#">5</a></li>
+				<th:block th:with="start = ${pagingMap.startPcount}, end = ${pagingMap.endPcount}, current = ${pagingMap.currentPage}">
+					<li th:each="page: ${#numbers.sequence(start, end)}" th:value="${page}+1" class="page-item">
+						<a th:if="${page} == ${pagingMap.currentPage}" class="page-link bg-primary text-light" th:href="@{homeEntry(page=${page})}" th:text="${page}"></a>
+						<a th:unless="${page} == ${pagingMap.currentPage}" class="page-link" th:href="@{homeEntry(page=${page})}" th:text="${page}"></a>
+					</li>
+				</th:block>
 				<li th:if="${pagingMap.currentPage} == ${pagingMap.maxPcount}" th:classappend="disabled" class="page-item"><a class="page-link" href="#">다음</a></li>
 				<li th:unless="${pagingMap.currentPage} == ${pagingMap.maxPcount}" class="page-item"><a class="page-link" th:href="@{homeEntry(page=${pagingMap.currentPage} + 1)}">다음</a></li>
 				<li th:if="${pagingMap.currentPage} == ${pagingMap.maxPcount}" th:classappend="disabled" class="page-item"><a class="page-link" href="#">마지막</a></li>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jobApply">
+	<select id="list" resultType="hashmap">
+		SELECT id, 
+			 date_format(apply_date, '%m/%d') as apply_date,
+			 company_name, 
+			 announcement_name, 
+			 IF(read_yn = 1, 'Y', 'N') AS read_yn,
+			 CASE WHEN(pass_yn) = 0 THEN 'N'
+			 		WHEN(pass_yn) = 1 THEN 'Y'
+	       		ELSE '-'
+	       END AS pass_yn,
+			 CASE WHEN(STATUS) = 0 THEN '-'
+			 		WHEN(STATUS) = 1 THEN '서류통과'
+			 		WHEN(STATUS) = 2 THEN '코딩테스트'
+			 		WHEN(STATUS) = 3 THEN '면접'
+			 		ELSE '에러'
+			 END AS apply_status
+		FROM job_apply
+		ORDER BY id DESC
+	</select>
+</mapper>

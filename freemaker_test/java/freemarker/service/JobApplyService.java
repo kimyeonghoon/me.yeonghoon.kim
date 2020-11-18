@@ -19,4 +19,9 @@ public class JobApplyService implements IJobApplyService {
 		return iJobApplyDao.list();
 	}
 
+	@Override
+	public void jobAdd(HashMap<String, String> params) throws Throwable {
+		iJobApplyDao.jobAdd(params);
+	}
+
 }

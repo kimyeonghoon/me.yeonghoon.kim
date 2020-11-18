@@ -15,7 +15,12 @@ public class JobApplyDao implements IJobApplyDao {
 
 	@Override
 	public List<HashMap<String, String>> list() throws Throwable {
-		return sqlSession.selectList("list");
+		return sqlSession.selectList("jobApply.list");
+	}
+
+	@Override
+	public void jobAdd(HashMap<String, String> params) throws Throwable {
+		sqlSession.insert("jobApply.jobAdd", params);
 	}
 
 }

@@ -8,9 +8,41 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript">
+function jobAdd() {
+	var params = $("#jobAdd").serialize();
+	$.ajax({
+		type : "post",			  
+		url : "jobAdd",
+		dataType : "json",
+		data : params,
+		success : function(res) { 
+			if(res.result == "success") {
+				alert("등록이 완료되었습니다.");
+			} else if(res.result == "null") {
+				alert("회사명 또는 공고명을 입력해주세요.");
+			} else {
+				alert("에러 발생!!");
+			}
+			location.href = "jobApply";
+		},
+		error : function(reqsuest, status, error) {  
+			console.log("text : " + reqsuest.responseTxt);
+			console.log("error : " + error);
+		}
+	});
+}
+</script>
 </head>
 <body>
 	<div class="container-sm">
+		<form action="jobAdd" id="jobAdd" method="post">
+			<span>회사명 : </span>
+			<input type="text" name="companyName" />
+			<span>공고명 : </span>
+			<input type="text" name="announceName" />
+			<button type="button" class="btn btn-sm btn-danger" onclick="jobAdd()">등록</button>
+		</form>
 		<div class="table-responsive">
 			<table class="table table-striped table-sm text-center">
 				<thead>

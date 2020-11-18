@@ -20,4 +20,8 @@
 		FROM job_apply
 		ORDER BY id DESC
 	</select>
+	<insert id="jobAdd" parameterType="hashmap">
+		INSERT INTO job_apply (company_name, announcement_name)
+		VALUES (#{companyName}, #{announceName});
+	</insert>
 </mapper>
